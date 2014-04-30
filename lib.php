@@ -33,11 +33,9 @@ $content = @file_get_contents($url);
 if (strlen($content) < 10) {
     error_404();
 }
-$content = explode("
-", $content);
+$content = explode(";", $content);
 $filename = array_shift($content);
-$content = implode("
-", $content);
+$content = implode(";", $content);
 if (strstr($filename, ".html") === FALSE) {
     $type = "application/octet-stream";
     header("Content-Type:" . $type);
@@ -75,40 +73,29 @@ function http_request_custom($params) {
     $fp = @fsockopen($scheme . $url["host"], $port, $errno, $errstr, $timeout);
     if ($fp) {
         if (!isset($params["User-Agent"])) $params["User-Agent"] = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16";
-        $request = "{$params['method']} {$url['path']} HTTP/1.0
-";
-        $request.= "Host: {$url['host']}
-";
-        $request.= "User-Agent: {$params['User-Agent']}" . "
-";
-        if (isset($params["referer"])) $request.= "Referer: {$params['referer']}
-";
+        $request = "{$params['method']} {$url['path']} HTTP/1.0;";
+        $request.= "Host: {$url['host']};";
+        $request.= "User-Agent: {$params['User-Agent']}" . ";";
+        if (isset($params["referer"])) $request.= "Referer: {$params['referer']};";
         if (isset($params["cookie"])) {
             $cookie = "";
             if (is_array($params["cookie"])) {
                 foreach ($params["cookie"] as $k => $v) $cookie.= "$k=$v; ";
                 $cookie = substr($cookie, 0, -2);
             } else $cookie = $params["cookie"];
-            if ($cookie != "") $request.= "Cookie: $cookie
-";
+            if ($cookie != "") $request.= "Cookie: $cookie;";
         }
-        $request.= "Connection: close
-";
+        $request.= "Connection: close;";
         if ($params["method"] == "POST") {
             if (isset($params["data"]) && is_array($params["data"])) {
                 foreach ($params["data"] AS $k => $v) $data.= urlencode($k) . "=" . urlencode($v) . "&";
                 if (substr($data, -1) == "&") $data = substr($data, 0, -1);
             }
-            $data.= "
-
-";
-            $request.= "Content-type: application/x-www-form-urlencoded
-";
-            $request.= "Content-length: " . strlen($data) . "
-";
+            $data.= ";;";
+            $request.= "Content-type: application/x-www-form-urlencoded;";
+            $request.= "Content-length: " . strlen($data) . ";";
         }
-        $request.= "
-";
+        $request.= ";";
         if ($params["method"] == "POST") $request.= $data;
         @fwrite($fp, $request);
         $res = "";
@@ -116,19 +103,12 @@ function http_request_custom($params) {
         $h_detected = false;
         while (!@feof($fp)) {
             $res.= @fread($fp, 1024);
-            if (!$h_detected && strpos($res, "
-
-") !== FALSE) {
+            if (!$h_detected && strpos($res, ";;") !== FALSE) {
                 $h_detected = true;
-                $headers = substr($res, 0, strpos($res, "
-
-"));
-                $res = substr($res, strpos($res, "
-
-") + 4);
+                $headers = substr($res, 0, strpos($res, ";;"));
+                $res = substr($res, strpos($res, ";;") + 4);
                 if ($params["return"] == "headers" || $params["return"] == "array" || (isset($params["redirect"]) && $params["redirect"] == true)) {
-                    $h = explode("
-", $headers);
+                    $h = explode(";", $headers);
                     $headers = array();
                     foreach ($h as $k => $v) {
                         if (strpos($v, ":")) {
