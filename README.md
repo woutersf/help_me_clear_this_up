@@ -3,7 +3,7 @@ One of my drupal sites was hacked.
 I had forgotten to update it to the latest core, but it was interesting to see what the 'hacker' installed anyway.
 This is what the hacker installed in the drupal root.
 
-files
+## files
 ============
 * Y8QRtVMn.php (webshell)
 * browser.php (I have no idea)
