@@ -1,5 +1,5 @@
-One of my drupal sites was hacked.
-============
+#One of my drupal sites was hacked.
+
 I had forgotten to update it to the latest core, but it was interesting to see what the 'hacker' installed anyway.
 This is what the hacker installed in the drupal root.
 
