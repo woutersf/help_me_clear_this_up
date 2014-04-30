@@ -11,7 +11,7 @@ This is what the hacker installed in the drupal root.
 * en.php (I have no idea)
 * forum.php
 * home.php
-* index.php (The drupal ddefault index.php with some lines inserted in the top.)
+* index.php (The drupal default index.php with some lines inserted in the top.)
 * info.php
 * lib.php
 * main.php
