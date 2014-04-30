@@ -1,8 +1,10 @@
-# One of my drupal sites was hacked.
+One of my drupal sites was hacked.
+============
 I had forgotten to update it to the latest core, but it was interesting to see what the 'hacker' installed anyway.
 This is what the hacker installed in the drupal root.
 
-## files
+files
+============
 * Y8QRtVMn.php (webshell)
 * browser.php (I have no idea)
 * common.php (I have no idea)
@@ -21,9 +23,11 @@ This is what the hacker installed in the drupal root.
 All of these files are obfuscated.
 The other php files are drupal update, xmlrpc and cron.php, those are unaltered.
 
-## When rendered in the index.php
+When rendered in the index.php
+============
 the behavior was like so:
 At first you see the site as usual, then javascript kicks in (this php seems to render en|decodeURI encoded javascript).
 
-## what else
+what else
+============
 It seems this renders your webserver as a spam email relay too.
