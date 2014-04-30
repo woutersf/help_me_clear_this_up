@@ -29,3 +29,9 @@ At first you see the site as usual, then javascript kicks in (this php seems to 
 
 ## what else
 It seems this renders your webserver as a spam email relay too.
+references are made to
+http://78.138.118.127/12345nbvvd.php
+http://78.138.127.174/2701dfbvcxff.php
+http://javaterm.com/green/backlinker.php
+http://javaterm.com/shaman/shaman.php
+
