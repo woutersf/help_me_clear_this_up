@@ -23,7 +23,7 @@ The other php files are drupal update, xmlrpc and cron.php, those are unaltered.
 
 ## When rendered in the index.php
 the behavior was like so:
-Qt first you see the site as usual, then javascript kicks in (this php seems to render en|decodeURI encoded javascript).
+At first you see the site as usual, then javascript kicks in (this php seems to render en|decodeURI encoded javascript).
 
 ## what else
 It seems this renders your webserver as a spam email relay too.
